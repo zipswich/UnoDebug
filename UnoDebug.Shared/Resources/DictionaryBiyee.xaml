@@ -1,0 +1,77 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+
+    <!--Binding for Setter does not seem to be supported-->
+    <!--https://msdn.microsoft.com/en-us/library/windows.ui.xaml.setter.value.aspx?f=255&MSPPError=-2147217396-->
+    <!--Windows Presentation Foundation (WPF) and Microsoft Silverlight supported the ability to use a Binding expression to supply the Value for a Setter in a Style. The Windows Runtime doesn't support a Binding usage for Setter.Value (the Binding won't evaluate and the Setter has no effect, you won't get errors, but you won't get the desired result either). When you convert XAML styles from WPF or Silverlight XAML, replace any Binding expression usages with strings or objects that set values, or refactor the values as shared StaticResource values rather than Binding-obtained values.-->
+    <!--<Style TargetType="Button">
+        <Setter Property="FontSize" 
+                Value="{x:Bind ElementName=pageRoot, Path=ActualHeight,Converter={StaticResource HeightToButtonFontSizeConverter}, FallbackValue=30}"/>
+    </Style>-->
+
+    <Style x:Key="TextBlockHubTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="40"/>
+    </Style>
+    <Style x:Key="ButtonMediumUniversal" TargetType="Button">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+    </Style>
+    <Style x:Key="ButtonXXLargeUniversal" TargetType="Button">
+        <Setter Property="FontSize" Value="80"/>
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+    </Style>
+    <Style x:Key="ButtonUniversal" TargetType="Button">
+        <Setter Property="FontSize" Value="60"/>
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+    </Style>
+    <Style x:Key="CheckBoxMediumUniversal" TargetType="CheckBox">
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+
+    <Style x:Key="TexBlockTitleUniversal" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="45"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style x:Key="TexBlockUniversal" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="35"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style x:Key="TexBlockMediumUniversal" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style x:Key="TexBlockSmallUniversal" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+    <Style x:Key="ComboBoxMediumUniversal" TargetType="ComboBox">
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+
+    <Style x:Key="TexBoxMediumUniversal" TargetType="TextBox">
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+
+    <Style x:Key="PasswordBoxMediumUniversal" TargetType="PasswordBox">
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+    <Style x:Key="GridUniversalWizardContent" TargetType="Grid">
+        <Setter Property="Width" Value="750"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    <Style x:Key="ScrollViewerUniversalWizard" TargetType="ScrollViewer">
+        <Setter Property="Background" Value="#aa000000"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <!--<Style TargetType="AppBarButton">
+        <Setter Property="FontSize" Value="30"/>
+    </Style>-->
+</ResourceDictionary>

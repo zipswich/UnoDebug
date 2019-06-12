@@ -8,4 +8,4 @@ https://github.com/nventive/Uno/issues/1009 (related to https://github.com/nvent
 
 https://github.com/nventive/Uno/issues/1018 
 
-MenuFlyoutItem clicking does invoke the specified event handler.
+MenuFlyoutItem clicking does not invoke the specified event handler.

@@ -81,12 +81,20 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:DeviceItem">
-                        <Grid Width="{x:Bind iTileWidth}"
-                        Height="{x:Bind iTileHeight}"
-                        Tag="{x:Bind}"
-                        Background="#88333333"
-                        Margin="0"
-                          Holding="Grid_Holding">
+                        <Grid
+                            x:Name="gridItem"
+                            Width="{x:Bind iTileWidth}"
+                            Height="{x:Bind iTileHeight}"
+                            Tag="{x:Bind}"
+                            Background="#88333333"
+                            Margin="0"
+                            Holding="Grid_Holding">
+                            <FlyoutBase.AttachedFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Name="mfiUnoTest" Text="Uno test"  Click="mfiUnoTest_Click"  />
+                                    <MenuFlyoutItem Name="mfiUnoDebug" Text="Uno debug"  Click="mfiUnoDebug_Click" />
+                                </MenuFlyout>
+                            </FlyoutBase.AttachedFlyout>
                             <Button Name="btTest" Content="Click Me" Click="BtTest_Click"/>
                             <Border >
                                 <Image Name="imgSnapshot"

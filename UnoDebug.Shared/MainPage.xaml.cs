@@ -3,7 +3,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Media;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -109,7 +112,78 @@ namespace UnoDebug
 
         private void LvDeviceTiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Debug.Write("Selected item:" + diSelected.ToString());
+            try
+            {
+                Debug.Write("Selected item:" + diSelected);
+
+                Grid grid = (Grid)findControlByName(lvDeviceTiles.ContainerFromIndex(1), "gridItem");
+                FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(grid);
+                flyoutBase.ShowAt(grid);
+                Console.WriteLine("Selected item's Grid control name: " + grid.Name);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception from LvDeviceTiles_SelectionChanged: " + ex);
+            }
+        }
+        public static FrameworkElement findControlByName(object oParent, string sName)
+        {
+            FrameworkElement control = null;
+            if (oParent is DependencyObject)
+            {
+                DependencyObject doParent = oParent as DependencyObject;
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(doParent); i++)
+                {
+                    DependencyObject doChild = VisualTreeHelper.GetChild(doParent, i);
+                    try
+                    {
+                        if (doChild == null || !(doChild is FrameworkElement))
+                        {
+                            control = findControlByName(doChild, sName);
+                        }
+                        else
+                        {
+                            FrameworkElement ctr = doChild as FrameworkElement;
+                            if (ctr.Name == sName)
+                            {
+                                control = ctr;
+                                break;
+                            }
+                            else
+                            {
+                                control = findControlByName(doChild, sName);
+                            }
+                        }
+                        if(control == null)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("This is Band-aid, so no big deal for exception:" + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                //do nothing
+            }
+            return control;
+        }
+
+        private void mfiUnoDebug_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Console.Write("mfiUnoDebug clicked");
+        }
+
+        private void mfiUnoTest_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Console.Write("mfiUnoTest clicked");
         }
     }
 }

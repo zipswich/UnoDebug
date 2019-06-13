@@ -2,7 +2,7 @@
 For debugging Uno issues
 
 
-Current issues:
+Current issues (all on iOS):
 
 https://github.com/nventive/Uno/issues/1009 (related to https://github.com/nventive/Uno/pull/1014)
 

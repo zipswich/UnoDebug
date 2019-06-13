@@ -98,9 +98,9 @@
                             <Button Name="btTest" Content="Click Me" Click="BtTest_Click"/>
                             <Border >
                                 <Image Name="imgSnapshot"
-                     Margin="{x:Bind iImageMargin}"
-                     Source="{x:Bind bmp}"
-                     Stretch="UniformToFill">
+                                     Margin="{x:Bind iImageMargin}"
+                                     Source="{x:Bind bmp}"
+                                     Stretch="UniformToFill">
 
                                     <Image.RenderTransform>
                                         <TranslateTransform />

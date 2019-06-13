@@ -2,11 +2,14 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.CompilerServices;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -98,6 +101,39 @@ namespace UnoDebug
                 sName = "Test3",
                 iTileWidth = 300,
             });
+
+
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            StorageFile sfFoo = await ApplicationData.Current.LocalFolder.CreateFileAsync("foo", CreationCollisionOption.ReplaceExisting);
+            using (StreamWriter dr = new StreamWriter(await sfFoo.OpenStreamForWriteAsync()))
+            {
+                await dr.WriteAsync("this is foo + foo");
+                await dr.FlushAsync();
+                dr.Close(); //Supposed to be redundant
+            }
+            StorageFile sfFoo2 = await ApplicationData.Current.LocalFolder.CreateFileAsync("foo", CreationCollisionOption.ReplaceExisting);
+            using (StreamWriter dr = new StreamWriter(await sfFoo.OpenStreamForWriteAsync()))
+            {
+                await dr.WriteAsync("this is abc");
+                await dr.FlushAsync();
+                dr.Close(); //Supposed to be redundant
+            }
+
+            StorageFile sfFooRead = await ApplicationData.Current.LocalFolder.GetFileAsync("foo");
+            using (FileStream stream = File.OpenRead(sfFooRead.Path))
+            using (StreamReader sr = new StreamReader(stream))
+            {
+                {
+                    //The following outputs: "this is abc + foo"
+                    //It is supposed to be: "this is abc"
+                    Console.WriteLine(sr.ReadToEnd());
+                }
+            }
+
         }
 
         private void BtTest_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -154,7 +190,7 @@ namespace UnoDebug
                                 control = findControlByName(doChild, sName);
                             }
                         }
-                        if(control == null)
+                        if (control == null)
                         {
                             continue;
                         }

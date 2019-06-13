@@ -1,6 +1,7 @@
 # UnoDebug
 For debugging Uno issues
 
+Uno is the best framework targeting multiple platforms (Windows, Android, iOS, webt).  It harnesses the power of multiple technologies( UWP, .Net, Xamarin, Mono, WebAssmebly...) and makes app development with IDE king Visual Studio a fun and highly prodctive.  
 
 Current issues (all on iOS):
 

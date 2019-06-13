@@ -11,3 +11,5 @@ https://github.com/nventive/Uno/issues/1018
 https://github.com/nventive/Uno/pull/1064
 
 MenuFlyoutItem clicking does not invoke the specified event handler.
+
+CreationCollisionOption.ReplaceExisting is treated as CreationCollisionOption.OpenIfExists

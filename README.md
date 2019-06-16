@@ -16,3 +16,8 @@ https://github.com/nventive/Uno/pull/1064
 
 CreationCollisionOption.ReplaceExisting is treated as CreationCollisionOption.OpenIfExists
 https://github.com/nventive/Uno/issues/1067
+
+`OpenStreamForWriteAsync("foo.txt", CreationCollisionOption.ReplaceExisting)` throws
+`Exception: System.IO.FileNotFoundException: Could not find file ".../Library/Developer/CoreSimulator/Devices/E86F6ABD-3120-41F6-A850-7527F82D11E2/data/Containers/Data/Application/55ACE83E-F2B2-4F7F-9001-ACA4E03801B2/Library/Data/foo.txt"`
+instead of creating the file.
+https://github.com/nventive/Uno/issues/1077

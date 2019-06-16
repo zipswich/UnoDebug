@@ -108,6 +108,8 @@ namespace UnoDebug
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            //The following code shows CreationCollisionOption.ReplaceExisting is treated as CreationCollisionOption.OpenIfExists
             StorageFile sfFoo = await ApplicationData.Current.LocalFolder.CreateFileAsync("foo", CreationCollisionOption.ReplaceExisting);
             using (StreamWriter dr = new StreamWriter(await sfFoo.OpenStreamForWriteAsync()))
             {
@@ -132,6 +134,16 @@ namespace UnoDebug
                     //It is supposed to be: "this is abc"
                     Console.WriteLine(sr.ReadToEnd());
                 }
+            }
+
+            try
+            {
+                await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync("foo.txt", CreationCollisionOption.ReplaceExisting);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Exception: " + ex);
             }
 
         }
